@@ -47,6 +47,12 @@ public class Utils {
         map.putString("avatar", msg.getSenderAvatarUrl());
         map.putBoolean("read", msg.isReadByOperator());
         map.putBoolean("canEdit", msg.canBeEdited());
+
+        Message.Attachment attach = msg.getAttachment();
+        if (attach != null) {
+            map.putString("contentType", attach.getFileInfo().getContentType().toString());
+            map.putString("url", attach.getFileInfo().getUrl());
+        }
         return map;
     }
 
