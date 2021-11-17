@@ -22,7 +22,10 @@ class Utils : NSObject  {
         let avatar : String = message.getSenderAvatarFullURL()?.absoluteString ?? "";
         let read : Bool = message.isReadByOperator();
         let canEdit : Bool = message.canBeEdited();
-        
+        let url : String = message.getData()?.getAttachment()?.getFileInfo().getURL()?.absoluteString ?? "";
+        let filename : String = message.getData()?.getAttachment()?.getFileInfo().getFileName() ?? "";
+        let contentType : String = message.getData()?.getAttachment()?.getFileInfo().getContentType() ?? "";
+
         map.updateValue(id, forKey: "id");
         map.updateValue(time, forKey: "time");
         map.updateValue(type, forKey: "type");
@@ -32,7 +35,10 @@ class Utils : NSObject  {
         map.updateValue(avatar, forKey: "avatar");
         map.updateValue(read, forKey: "read");
         map.updateValue(canEdit, forKey: "canEdit");
-        
+        map.updateValue(url, forKey: "url");
+        map.updateValue(filename, forKey: "filename");
+        map.updateValue(contentType, forKey: "contentType");
+
         return map;
     }
     
@@ -50,4 +56,3 @@ class Utils : NSObject  {
         return map;
     }
 }
-
